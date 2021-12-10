@@ -7,7 +7,7 @@ import time
 
 from lamport_pb2 import(
     LamportMessage,
-    LamportOK,
+    Void,
 )
 import lamport_pb2_grpc
 
@@ -50,17 +50,14 @@ def LampAnother(last = -1):
 
     time.sleep(1)
     possible_targets = [i for i in my_neighbors.keys()]
-    if my_id in possible_targets:
-        possible_targets.remove(my_id)
     if len(possible_targets) > 1 and last in possible_targets:
         possible_targets.remove(last)
 
-    reqTime = update_time()
-    lampRequest = LamportMessage(user_id = my_id, time = reqTime)
-
     target_id = random.choice(possible_targets)
+    reqTime = update_time()
     send_log(target_id, reqTime)
 
+    lampRequest = LamportMessage(id = my_id, time = reqTime)
     target_client = my_neighbors[target_id]
     response = target_client.LampSend(lampRequest)
 
@@ -68,13 +65,12 @@ class Lamport(lamport_pb2_grpc.LamportSendServicer):
     def LampSend(self, request, context):
 
         reqTime = update_time(request.time)
+        receive_log(request.id, reqTime)
 
-        receive_log(request.user_id, reqTime)
-
-        callThread = threading.Thread(target = LampAnother, args = (request.user_id,))
+        callThread = threading.Thread(target = LampAnother, args = (request.id,))
         callThread.start()
 
-        return LamportOK(ok=True)
+        return Void()
 
 
 def serve():

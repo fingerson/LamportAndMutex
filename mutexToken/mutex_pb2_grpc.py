@@ -54,7 +54,6 @@ class MutexSend(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
-            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -63,4 +62,4 @@ class MutexSend(object):
             mutex__pb2.MutexMessage.SerializeToString,
             mutex__pb2.Void.FromString,
             options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            call_credentials, compression, wait_for_ready, timeout, metadata)

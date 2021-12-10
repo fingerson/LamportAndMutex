@@ -17,7 +17,7 @@ class LamportSendStub(object):
         self.LampSend = channel.unary_unary(
                 '/LamportSend/LampSend',
                 request_serializer=lamport__pb2.LamportMessage.SerializeToString,
-                response_deserializer=lamport__pb2.LamportOK.FromString,
+                response_deserializer=lamport__pb2.Void.FromString,
                 )
 
 
@@ -36,7 +36,7 @@ def add_LamportSendServicer_to_server(servicer, server):
             'LampSend': grpc.unary_unary_rpc_method_handler(
                     servicer.LampSend,
                     request_deserializer=lamport__pb2.LamportMessage.FromString,
-                    response_serializer=lamport__pb2.LamportOK.SerializeToString,
+                    response_serializer=lamport__pb2.Void.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,6 +60,6 @@ class LamportSend(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/LamportSend/LampSend',
             lamport__pb2.LamportMessage.SerializeToString,
-            lamport__pb2.LamportOK.FromString,
+            lamport__pb2.Void.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

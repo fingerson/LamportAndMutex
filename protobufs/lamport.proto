@@ -1,14 +1,12 @@
 syntax = "proto3";
 
 message LamportMessage{
-    uint64 user_id = 1;
+    uint64 id = 1;
     uint64 time = 2;
 }
 
-message LamportOK{
-    bool ok = 1;
-}
+message Void{;}
 
 service LamportSend{
-    rpc LampSend (LamportMessage) returns (LamportOK);
+    rpc LampSend (LamportMessage) returns (Void);
 }

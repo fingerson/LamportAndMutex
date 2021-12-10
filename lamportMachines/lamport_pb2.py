@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rlamport.proto\"/\n\x0eLamportMessage\x12\x0f\n\x07user_id\x18\x01 \x01(\x04\x12\x0c\n\x04time\x18\x02 \x01(\x04\"\x17\n\tLamportOK\x12\n\n\x02ok\x18\x01 \x01(\x08\x32\x36\n\x0bLamportSend\x12\'\n\x08LampSend\x12\x0f.LamportMessage\x1a\n.LamportOKb\x06proto3'
+  serialized_pb=b'\n\rlamport.proto\"*\n\x0eLamportMessage\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04time\x18\x02 \x01(\x04\"\x06\n\x04Void21\n\x0bLamportSend\x12\"\n\x08LampSend\x12\x0f.LamportMessage\x1a\x05.Voidb\x06proto3'
 )
 
 
@@ -34,7 +34,7 @@ _LAMPORTMESSAGE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='LamportMessage.user_id', index=0,
+      name='id', full_name='LamportMessage.id', index=0,
       number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -60,25 +60,18 @@ _LAMPORTMESSAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=17,
-  serialized_end=64,
+  serialized_end=59,
 )
 
 
-_LAMPORTOK = _descriptor.Descriptor(
-  name='LamportOK',
-  full_name='LamportOK',
+_VOID = _descriptor.Descriptor(
+  name='Void',
+  full_name='Void',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='ok', full_name='LamportOK.ok', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -91,12 +84,12 @@ _LAMPORTOK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=66,
-  serialized_end=89,
+  serialized_start=61,
+  serialized_end=67,
 )
 
 DESCRIPTOR.message_types_by_name['LamportMessage'] = _LAMPORTMESSAGE
-DESCRIPTOR.message_types_by_name['LamportOK'] = _LAMPORTOK
+DESCRIPTOR.message_types_by_name['Void'] = _VOID
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 LamportMessage = _reflection.GeneratedProtocolMessageType('LamportMessage', (_message.Message,), {
@@ -106,12 +99,12 @@ LamportMessage = _reflection.GeneratedProtocolMessageType('LamportMessage', (_me
   })
 _sym_db.RegisterMessage(LamportMessage)
 
-LamportOK = _reflection.GeneratedProtocolMessageType('LamportOK', (_message.Message,), {
-  'DESCRIPTOR' : _LAMPORTOK,
+Void = _reflection.GeneratedProtocolMessageType('Void', (_message.Message,), {
+  'DESCRIPTOR' : _VOID,
   '__module__' : 'lamport_pb2'
-  # @@protoc_insertion_point(class_scope:LamportOK)
+  # @@protoc_insertion_point(class_scope:Void)
   })
-_sym_db.RegisterMessage(LamportOK)
+_sym_db.RegisterMessage(Void)
 
 
 
@@ -122,8 +115,8 @@ _LAMPORTSEND = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=91,
-  serialized_end=145,
+  serialized_start=69,
+  serialized_end=118,
   methods=[
   _descriptor.MethodDescriptor(
     name='LampSend',
@@ -131,7 +124,7 @@ _LAMPORTSEND = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_LAMPORTMESSAGE,
-    output_type=_LAMPORTOK,
+    output_type=_VOID,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
