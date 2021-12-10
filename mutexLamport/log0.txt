@@ -1,0 +1,19 @@
+process 0 log start
+Asked id:0 for permission at time:1
+Received permission request from id:0 at time:2
+Asked id:1 for permission at time:3
+Received permission request from id:1 at time:5
+Granted id:0 at time:4 my permission
+Permitted by id:0 at time:6
+Granted id:1 at time:7 my permission
+Permitted by id:1 at time:16
+Using resource at time:17
+Received permission request from id:1 at time:18
+Granted id:1 at time:19 my permission
+Finished using resource at time:21
+Asked id:0 for permission at time:22
+Received permission request from id:0 at time:23
+Asked id:1 for permission at time:25
+Permitted by id:0 at time:26
+Granted id:0 at time:24 my permission
+Received permission request from id:1 at time:30

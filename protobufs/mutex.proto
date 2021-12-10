@@ -1,0 +1,12 @@
+syntax="proto3";
+
+message MutexMessage{
+    uint64 id = 1;
+    uint64 time = 2;
+}
+
+message Void{;}
+
+service MutexSend{
+    rpc SendToken (MutexMessage) returns (Void);
+}
