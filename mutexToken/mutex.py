@@ -20,9 +20,13 @@ def process(mutexObj, startingID):
         time.sleep(random.randrange(5,10))
         mutexObj.interested = True
         mutexObj.token.acquire()
-        print("ID:"+str(id)+" started using critical area")
+        my_file = open("resource.txt", "a")
+        my_file.write("ID:"+str(id)+" started using critical area\n")
+        my_file.close()
         time.sleep(1)
-        print("ID:"+str(id)+" stopped using critical area")
+        my_file = open("resource.txt", "a")
+        my_file.write("ID:"+str(id)+" stopped using critical area\n")
+        my_file.close()
         mutexObj.interested = False
         mutexObj.forwardToken()
 
