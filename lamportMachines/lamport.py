@@ -16,7 +16,6 @@ my_id = 0
 time_lock = threading.Lock()
 process_time = 0
 log_lock = threading.Lock()
-log = []
 
 def update_time(new = -1):
     time_lock.acquire()
@@ -28,10 +27,8 @@ def update_time(new = -1):
 
 def log_write(message):
     global my_id
-    global log
     global log_lock
     log_lock.acquire(1)
-    log.append(message)
     my_file = open("log"+str(my_id)+".txt", "a")
     my_file.write(message+"\n")
     my_file.close()
@@ -49,11 +46,12 @@ def LampAnother(last = -1):
     global my_neighbors
 
     time.sleep(1)
+
     possible_targets = [i for i in my_neighbors.keys()]
     if len(possible_targets) > 1 and last in possible_targets:
         possible_targets.remove(last)
-
     target_id = random.choice(possible_targets)
+
     reqTime = update_time()
     send_log(target_id, reqTime)
 

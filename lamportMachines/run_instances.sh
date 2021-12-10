@@ -1,5 +1,6 @@
 #! /bin/bash
 ports="50051 50052 50053 50054 50055 50056"
+
 python3 -m pip install -r requirements.txt
 python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --grpc_python_out=. ../protobufs/lamport.proto
 
