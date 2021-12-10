@@ -54,7 +54,6 @@ class LamportSend(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
-            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -63,4 +62,4 @@ class LamportSend(object):
             lamport__pb2.LamportMessage.SerializeToString,
             lamport__pb2.LamportOK.FromString,
             options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -30,7 +30,6 @@ def log_write(message):
     global my_id
     global log
     global log_lock
-    print("esperando")
     log_lock.acquire(1)
     log.append(message)
     my_file = open("log"+str(my_id)+".txt", "a")
@@ -39,28 +38,25 @@ def log_write(message):
     log_lock.release()
 
 def receive_log(id, time):
-    print("aqui?")
     message = "Received message from id:"+str(id)+" at time:"+str(time)
     log_write(message)
 
 def send_log(id, time):
     message = "Sent message to id:"+str(id)+" at time:"+str(time)
-    #print(message)
     log_write(message)
 
 def LampAnother(last = -1):
     global my_neighbors
 
     time.sleep(1)
-    reqTime = update_time()
-    lampRequest = LamportMessage(user_id = my_id, time = reqTime)
-
     possible_targets = [i for i in my_neighbors.keys()]
-    print(possible_targets)
     if my_id in possible_targets:
         possible_targets.remove(my_id)
     if len(possible_targets) > 1 and last in possible_targets:
         possible_targets.remove(last)
+
+    reqTime = update_time()
+    lampRequest = LamportMessage(user_id = my_id, time = reqTime)
 
     target_id = random.choice(possible_targets)
     send_log(target_id, reqTime)
@@ -104,6 +100,10 @@ def serve():
     my_file = open("log"+str(my_id)+".txt", "w")
     my_file.write("process "+str(my_id)+" log start\n")
     my_file.close()
+
+    if my_id == 0:
+        thr = threading.Thread(target = LampAnother)
+        thr.start()
 
     server.add_insecure_port("[::]:"+neigh_ports[my_id])
     print("[::]:"+neigh_ports[my_id])
